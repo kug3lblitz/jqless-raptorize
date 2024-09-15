@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>Title This Page :)</title>
+	
+	<!-- The raptorize file  -->
+	<script src="raptorize2.js"></script>
+
+    <!-- For the button version -->
+    <script type="text/javascript">
+        window.addEventListener('load', function() {
+            console.log('Window loaded');
+            var buttons = document.querySelectorAll('.button');
+            buttons.forEach(function(button) {
+                console.log('Applying raptorize to button:', button);
+                if (typeof raptorize === 'function') {
+                    raptorize(button);
+                } else {
+                    console.error('raptorize function is not defined');
+                }
+            });
+        });
+    </script>
+	
+    <!-- For the Konami Code version -->
+    <script type="text/javascript">
+        window.addEventListener('load', function() {
+            var buttons = document.querySelectorAll('.button');
+            buttons.forEach(function(button) {
+                raptorize(button, {
+                    'enterOn': 'konami-code'
+                });
+            });
+        });
+    </script>
+	
+	<!-- For the Timer version -->
+    <script type="text/javascript">
+        window.addEventListener('load', function() {
+            function startRaptorize() {
+                var buttons = document.querySelectorAll('.button');
+                buttons.forEach(function(button) {
+                    raptorize(button, {
+                        'enterOn': 'timer',
+                        'delayTime': 2000
+                    });
+                });
+    
+                // Remove event listeners after the first interaction
+                window.removeEventListener('click', startRaptorize);
+                window.removeEventListener('keydown', startRaptorize);
+                window.removeEventListener('mousemove', startRaptorize);
+            }
+    
+            // Add event listeners for user interactions
+            window.addEventListener('click', startRaptorize);
+            window.addEventListener('keydown', startRaptorize);
+            window.addEventListener('mousemove', startRaptorize);
+        });
+    </script>
+
+</head>
+<body>
+	<h1>Hey There!</h1>
+	
+	<p><a href="#" class="button">Click me</a> to activate the Raptorize plugin.</p>
+	<p>You can also use the Konami-Code (on your keyboard type &uarr; &uarr; &darr; &darr; &larr; &rarr; &larr; &rarr; B A)</p>
+	
+</body>
+</html>
